@@ -10,3 +10,4 @@ class BookListViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.prefetch_related('details', 'comments__owner').all()
     serializer_class = BookSerializer
     permission_classes = (IsAdminOrReadOnly, )
+    lookup_field = 'slug'

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from .customer import Customer
 from .utils import BOOK_SKIN_CONDITION, PUBLICATION_LANGUAGE, uploadBookMedia
@@ -14,10 +15,21 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     discounted_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     stock = models.PositiveIntegerField()
+    slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.title} - {self.author}'
+
+    def create_unique_slug(self):
+        url = slugify(self.title.replace('ı', 'i'))
+        author = slugify(self.author.replace('ı', 'i'))
+        return f'{url}-{author}'
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.create_unique_slug()
+        return super().save(*args, **kwargs)
 
 
 class BookDetail(models.Model):
