@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from .customer import Customer
-from .utils import BOOK_SKIN_CONDITION, PUBLICATION_LANGUAGE
+from .utils import BOOK_SKIN_CONDITION, PUBLICATION_LANGUAGE, uploadBookMedia
 
 
 class Book(models.Model):
@@ -10,7 +10,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to=uploadBookMedia)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     discounted_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     stock = models.PositiveIntegerField()
