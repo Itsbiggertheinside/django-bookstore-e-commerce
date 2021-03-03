@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import NavbarMenu from '../navs/Navbar';
 import Dashboard from './Dashboard';
+import PageNavbar from '../partials/PageNavbar';
+import PageFooter from '../partials/PageFooter';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <NavbarMenu />
+        <PageNavbar />
         <Dashboard />
+        <PageFooter />
       </div>
     )
   }

@@ -1,3 +1,3 @@
 export default {
-    currentCategory: { name: 'popular' }
+    currentCategory: { name: 'Popular' }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, NavDropdown, Button, Form, FormControl } from 'react-bootstrap';
 
-class NavbarMenu extends Component {
+class PageNavbar extends Component {
     render() {
         return (
             <div>
@@ -32,4 +32,4 @@ class NavbarMenu extends Component {
 }
 
 
-export default NavbarMenu;
+export default PageNavbar;

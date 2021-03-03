@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import Homepage from '../pages/Homepage'
+import React, { Component } from 'react';
+import HomePage from '../homepage/HomePage';
+
 
 class Dashboard extends Component {
     render() {
         return (
             <div>
-                <Homepage />
+                <HomePage />
             </div>
         )
     }
