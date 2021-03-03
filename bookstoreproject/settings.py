@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Third Party
     'rest_framework',
     'debug_toolbar',
+    'corsheaders',
     # Core
     'store.apps.StoreConfig',
 ]
@@ -57,6 +58,7 @@ MIDDLEWARE = [
 
     # Third Party
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 
@@ -144,3 +146,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/media')
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
