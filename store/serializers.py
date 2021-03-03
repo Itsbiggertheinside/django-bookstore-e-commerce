@@ -9,13 +9,13 @@ class BookCommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BookComment
-        exclude = ('id','book',)
+        fields = '__all__'
 
 
 class BookDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookDetail
-        exclude = ('id', 'book',)
+        fields = '__all__'
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -25,4 +25,4 @@ class BookSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Book
-        exclude = ('id', 'slug',)
+        fields = '__all__'

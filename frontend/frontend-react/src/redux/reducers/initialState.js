@@ -1,3 +1,4 @@
 export default {
-    currentCategory: { name: 'Popular' }
+    currentCategory: 'popular',
+    books: []
 }
