@@ -2,10 +2,10 @@ import * as actions from '../actions/actionTypes';
 import initialState from './initialState';
 
 
-export default function filterByCategoryReducer(state=initialState.currentCategory, action) {
+export default function changeCategoryReducer(state=initialState.currentCategory, action) {
 
     switch (action.type) {
-        case actions.GET_BOOKS_BY_FILTER:
+        case actions.CHANGE_CATEGORY:
             return action.payload;
     
         default:

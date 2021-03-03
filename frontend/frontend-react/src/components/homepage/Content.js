@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as filterActions from '../../redux/actions/filterActions';
 
 
 class Content extends Component {
@@ -14,7 +16,7 @@ class Content extends Component {
                             <h5>{this.props.currentCategory.name}</h5>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link active={true}>Tümü</Nav.Link>
+                            <Nav.Link>Tümü</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link>Roman</Nav.Link>
@@ -38,9 +40,16 @@ class Content extends Component {
 
 function mapStateToProps(state) {
     return {
-        currentCategory: state.filterByCategoryReducer
+        currentCategory: state.changeCategoryReducer
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: {
+            getFilteredBooks: bindActionCreators(filterActions.filterBooks, dispatch)
+        }
+    }
+}
 
-export default connect(mapStateToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(Content);
