@@ -31,6 +31,7 @@ class Content extends Component {
                             <Nav.Link>Kişisel Gelişim</Nav.Link>
                         </Nav.Item>
                     </Nav>
+                    <h2>{this.props.actions.getFilteredBooks().length}</h2>
                 </Container>
             </div>
         )

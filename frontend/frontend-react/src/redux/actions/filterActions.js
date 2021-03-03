@@ -19,7 +19,7 @@ export function filterBooks() {
 
     return function(dispatch) {
 
-        let url = 'http://localhost:8000/books';
+        let url = 'http://localhost:8000/api/';
 
         return fetch(url).then(response => response.json())
         .then(data => dispatch(getBooksByFilterSuccess(data)))
