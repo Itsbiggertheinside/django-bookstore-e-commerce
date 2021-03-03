@@ -21,7 +21,7 @@ class CategoryNavbar extends Component {
                         <Nav.Link eventKey="disabled">Link</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                <h3>Current category: {this.props.currentCategory}</h3>
+                <h3>Current category: {this.props.currentCategory.name}</h3>
             </div>
         )
     }

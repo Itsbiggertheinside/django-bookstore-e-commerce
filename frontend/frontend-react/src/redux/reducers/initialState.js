@@ -1,5 +1,3 @@
-const initialState = {
-    currentCategory: 'popular'
+export default {
+    currentCategory: { name: 'popular' }
 }
-
-export default initialState;
