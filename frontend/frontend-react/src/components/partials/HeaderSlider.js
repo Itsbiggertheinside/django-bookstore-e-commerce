@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import NavbarMenu from "./Navbar";
 import { Row, Col, Carousel } from "react-bootstrap";
 
 class HeaderSlider extends Component {

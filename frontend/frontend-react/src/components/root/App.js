@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import NavbarMenu from '../header/Navbar';
-import HeaderSlider from '../header/HeaderSlider';
+import NavbarMenu from '../navs/Navbar';
 import Dashboard from './Dashboard';
 
 class App extends Component {
@@ -8,7 +7,6 @@ class App extends Component {
     return (
       <div>
         <NavbarMenu />
-        <HeaderSlider />
         <Dashboard />
       </div>
     )

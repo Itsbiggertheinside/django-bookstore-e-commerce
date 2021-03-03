@@ -1,2 +1,6 @@
+// Order
 export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+
+// Filter
+export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';

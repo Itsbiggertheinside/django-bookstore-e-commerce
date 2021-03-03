@@ -1,9 +1,10 @@
-import { combineReducers, CombineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import quantityReducer from './orderReducer';
+import filterReducer from './filterReducer';
 
 
 const reducers = combineReducers({
-    quantityReducer
+    quantityReducer, filterReducer
 });
 
 
