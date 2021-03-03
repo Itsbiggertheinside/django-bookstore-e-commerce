@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets, serializers, permissions
+from rest_framework import viewsets, serializers, permissions, filters
 
 from .models import Book
 from .serializers import BookSerializer
@@ -11,3 +11,5 @@ class BookListViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     permission_classes = (IsAdminOrReadOnly, )
     lookup_field = 'slug'
+    filter_backends = (filters.SearchFilter, )
+    search_fields = ('category',)
