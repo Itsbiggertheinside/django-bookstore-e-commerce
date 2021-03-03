@@ -8,7 +8,7 @@ import * as filterActions from '../../redux/actions/filterActions';
 class Content extends Component {
 
     componentDidMount() {
-        this.props.actions.getFilteredBooks()
+        this.props.actions.getFilteredBooks('')
     }
 
     render() {
@@ -44,7 +44,7 @@ class Content extends Component {
                                 <Card.Text>{book.stock} adet stok var</Card.Text>
                             </Card.Body>
                             <Card.Body>
-                                <Button onClick={() => this.props.actions.changeCategory(book.category)}>change category</Button>
+                                <Button onClick={() => this.props.actions.getFilteredBooks('roman')}>buton</Button>
                             </Card.Body>
                         </Card>
                     ))}
