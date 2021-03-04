@@ -4,6 +4,7 @@ from rest_framework import viewsets, serializers, permissions, filters
 from .models import Book
 from .serializers import BookSerializer
 from .permissions import IsAdminOrReadOnly
+from .pagination import BookPagination
 
 # Create your views here.
 class BookListViewSet(viewsets.ModelViewSet):
@@ -13,3 +14,4 @@ class BookListViewSet(viewsets.ModelViewSet):
     lookup_field = 'slug'
     filter_backends = (filters.SearchFilter, )
     search_fields = ('category',)
+    pagination_class = BookPagination
