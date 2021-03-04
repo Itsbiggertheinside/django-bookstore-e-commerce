@@ -1,57 +1,42 @@
 import React, { Component } from "react";
 import { Row, Col, Carousel } from "react-bootstrap";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from 'swiper';
+import { SliderBookCard } from '../commons/Card/SliderBookCard';
+
+
+
+const colors = [
+    '#ff5b5b35', '#bd5bff35', '#5bffba35', '#ff000035',
+    '#ff5b5b35', '#bd5bff35', '#5bffba35', '#ff000035',
+    '#ff5b5b35', '#bd5bff35', '#5bffba35', '#ff000035'
+]
+
+const book = {
+    id: 1,
+    image: 'https://i.dr.com.tr/cache/600x600-0/originals/0000000720273-1.jpg',
+    title: 'Dedemin Bakkalı',
+    author: 'Şermin Yaşar',
+    publisher: 'Kırmızı Kedi Yayınevi',
+    category: 'Roman',
+    price: 239.99,
+    stock: 4
+}
+
+
+SwiperCore.use([Autoplay]);
 
 class HeaderSlider extends Component {
   render() {
     return (
-      <div>
-        <Row>
-            <Col xs="12">
-                <Carousel>
-                    <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="https://www.lovinglifeafter55.com/wp-content/uploads/2017/06/black-header_bg-1.jpg"
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>
-                        Nulla vitae elit libero, a pharetra augue mollis interdum.
-                        </p>
-                    </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="https://www.lovinglifeafter55.com/wp-content/uploads/2017/06/black-header_bg-1.jpg"
-                        alt="Second slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="https://www.lovinglifeafter55.com/wp-content/uploads/2017/06/black-header_bg-1.jpg"
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl
-                        consectetur.
-                        </p>
-                    </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-            </Col>
-        </Row>
-      </div>
+        <div className="mb-4">
+            <Swiper spaceBetween={5} slidesPerView={2.3} loop={true} autoplay={{delay: 1500, disableOnInteraction: false}} >
+                <SwiperSlide><SliderBookCard book={book} bgColor={colors[0]} /></SwiperSlide>
+                <SwiperSlide><SliderBookCard book={book} bgColor={colors[1]} /></SwiperSlide>
+                <SwiperSlide><SliderBookCard book={book} bgColor={colors[2]} /></SwiperSlide>
+                <SwiperSlide><SliderBookCard book={book} bgColor={colors[3]} /></SwiperSlide>
+            </Swiper>
+        </div>
     );
   }
 }

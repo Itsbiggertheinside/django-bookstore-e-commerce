@@ -1,0 +1,25 @@
+.card {
+    height: 80%;
+    border-radius: 0;
+    filter: drop-shadow(.5rem .5rem .5rem #8b471a6c);
+}
+
+.card-body {
+    padding: 2rem .5rem;
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.img-square-wrapper {
+    width: 50%;
+    height: 100%;
+}
+
+.img-square-wrapper img {
+    width: 100%;
+    height: 100%;
+    padding: 2rem 2rem;
+}

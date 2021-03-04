@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'swiper/swiper.min.css';
+import './style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/root/App';

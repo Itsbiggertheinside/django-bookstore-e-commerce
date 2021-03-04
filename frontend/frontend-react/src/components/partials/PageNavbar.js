@@ -5,10 +5,10 @@ class PageNavbar extends Component {
     render() {
         return (
             <div>
-                <Navbar bg="light" expand="lg">
+                <Navbar bg="light" expand="md">
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <NavDropdown title="Kategoriler" id="basic-nav-dropdown">
+                            <NavDropdown title="Kategoriler" id="basic-nav-dropdown" className="mr-3">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
@@ -23,7 +23,7 @@ class PageNavbar extends Component {
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
-                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand href="#home" className="">read<b>books</b></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 </Navbar>
             </div>

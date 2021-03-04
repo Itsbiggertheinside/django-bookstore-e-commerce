@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import HomePage from '../homepage/HomePage';
+import Main from '../partials/Main';
+import PageNavbar from '../partials/PageNavbar';
+import PageFooter from '../partials/PageFooter';
 
 
 class Dashboard extends Component {
     render() {
         return (
             <div>
-                <HomePage />
+                <PageNavbar />
+                <Main />
+                <PageFooter />
             </div>
         )
     }

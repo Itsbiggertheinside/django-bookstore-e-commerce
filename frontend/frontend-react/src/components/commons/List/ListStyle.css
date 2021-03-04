@@ -1,0 +1,10 @@
+.list-group-item-with-avatar {
+    background-color: transparent;
+    border: none;
+}
+
+.list-group-item-with-avatar img {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(.02rem .02rem .1rem);
+}
