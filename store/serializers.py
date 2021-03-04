@@ -13,6 +13,9 @@ class BookCommentSerializer(serializers.ModelSerializer):
 
 
 class BookDetailSerializer(serializers.ModelSerializer):
+
+    comments = BookCommentSerializer(read_only=True, many=True)
+
     class Meta:
         model = BookDetail
         fields = '__all__'
@@ -21,7 +24,6 @@ class BookDetailSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
 
     details = BookDetailSerializer(read_only=True, many=True)
-    comments = BookCommentSerializer(read_only=True, many=True)
     
     class Meta:
         model = Book

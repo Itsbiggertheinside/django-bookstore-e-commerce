@@ -48,10 +48,10 @@ class BookDetail(models.Model):
 
 
 class BookComment(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
+    book = models.ForeignKey(BookDetail, on_delete=models.CASCADE, related_name='comments')
     owner = models.ForeignKey(Customer, on_delete=models.PROTECT)
     comment = models.TextField()
     score = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     def __str__(self):
-        return f'{self.book.title}\'s comment by {self.owner}, Score: {str(self.score)}'
+        return f'{self.book.book.title}\'s comment by {self.owner}, Score: {str(self.score)}'
