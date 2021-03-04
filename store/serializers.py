@@ -24,7 +24,11 @@ class BookDetailSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
 
     details = BookDetailSerializer(read_only=True, many=True)
+    get_absolute_url = serializers.SerializerMethodField(method_name='get_absolute_url')
     
     class Meta:
         model = Book
         fields = '__all__'
+
+    def get_absolute_url(self, obj):
+        return obj.get_absolute_url()
