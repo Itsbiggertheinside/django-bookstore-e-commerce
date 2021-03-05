@@ -3,12 +3,13 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from .customer import Customer
+from .author import Author
 from .utils import BOOK_SKIN_CONDITION, PUBLICATION_LANGUAGE, uploadBookMedia
 
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    author = models.CharField(max_length=255)
+    author = models.ForeignKey(Author, on_delete=models.PROTECT)
     publisher = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     description = models.TextField()

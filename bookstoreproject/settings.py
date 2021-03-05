@@ -145,7 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'storage/media')
 
 
 CORS_ALLOWED_ORIGINS = [

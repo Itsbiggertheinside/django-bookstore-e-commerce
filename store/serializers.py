@@ -1,6 +1,11 @@
 from rest_framework import serializers
-from .models import Book, BookDetail, BookComment
+from .models import Author, Book, BookDetail, BookComment
 
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
 
 
 class BookCommentSerializer(serializers.ModelSerializer):
@@ -23,6 +28,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
 
+    author = AuthorSerializer()
     details = BookDetailSerializer(read_only=True, many=True)
     get_absolute_url = serializers.SerializerMethodField(method_name='get_absolute_url')
     
