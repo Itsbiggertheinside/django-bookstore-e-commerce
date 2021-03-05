@@ -15,3 +15,7 @@ class BookListHomeViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (filters.SearchFilter, )
     search_fields = ('category',)
     pagination_class = BookHomePagination
+
+
+class OrderItemViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    pass
