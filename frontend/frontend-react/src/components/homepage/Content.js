@@ -11,16 +11,16 @@ export default function Content() {
     const filter = useSelector(state => state.filterByCategoryReducer)
     const dispatch = useDispatch();
 
-    const book = {
-        id: 1,
-        image: 'https://i.dr.com.tr/cache/600x600-0/originals/0000000720273-1.jpg',
-        title: 'Dedemin Bakkalı',
-        author: 'Şermin Yaşar',
-        publisher: 'Kırmızı Kedi Yayınevi',
-        category: 'Roman',
-        price: 239.99,
-        stock: 4,
-    }
+    // const book = {
+    //     id: 1,
+    //     image: 'https://i.dr.com.tr/cache/600x600-0/originals/0000000720273-1.jpg',
+    //     title: 'Dedemin Bakkalı',
+    //     author: 'Şermin Yaşar',
+    //     publisher: 'Kırmızı Kedi Yayınevi',
+    //     category: 'Roman',
+    //     price: 239.99,
+    //     stock: 4,
+    // }
 
     return (
         <div>
@@ -30,74 +30,55 @@ export default function Content() {
                         <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks(''))}>Tümü</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('roman'))}>Dünya Klasikleri</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('klasik'))}>Dünya Klasikleri</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gelisim'))}>Polisiye</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('polisiye'))}>Polisiye</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks(''))}>Fantastik</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('fantastik'))}>Fantastik</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('business'))}>Korku Gerilim</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('korku-gerilim'))}>Korku Gerilim</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('bilim'))}>Macera</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('macera'))}>Macera</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gelisim'))}>Romantik</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('romantik'))}>Romantik</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('roman'))}>Edebiyat İnceleme</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('inceleme'))}>Edebiyat İnceleme</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('business'))}>Çocuk ve Gençlik</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gençlik'))}>Çocuk ve Gençlik</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
                         <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('bilim'))}>Bilim</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gelisim'))}>Felsefe</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('felsefe'))}>Felsefe</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks(''))}>Mizah</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('mizah'))}>Mizah</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('business'))}>İş</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('iş'))}>İş</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('bilim'))}>Söyleşi</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('söyleşi'))}>Söyleşi</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gelisim'))}>Röportaj</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('röportaj'))}>Röportaj</Button>
                     </Nav.Item>
                 </Nav>
                 <h3>Türünün Popülerleri</h3>
                 <Row>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
-                    <Col xs="6" className="mt-4">
-                        <BookCard book={book} />
-                    </Col>
+                    {filter.map((book) => (
+                        <Col xs="6" className="mt-4">
+                            <BookCard book={book} />
+                        </Col>
+                    ))}
                 </Row>
                 <Pagination className="justify-content-center my-4">
                     <Pagination.Prev />

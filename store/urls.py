@@ -4,8 +4,8 @@ from .views import BookListHomeViewSet, OrderItemViewSet
 
 
 router = DefaultRouter()
-router.register('', BookListHomeViewSet)
-router.register('order-item/', OrderItemViewSet)
+router.register('', BookListHomeViewSet, basename='book')
+router.register('order-item/', OrderItemViewSet, basename='order-item')
 
 
 urlpatterns = [
