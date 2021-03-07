@@ -6,24 +6,24 @@ export const filterByCategoryAction = (data) => {
 }
 
 
-const url = 'http://127.0.0.1:8000'
+const url = 'http://127.0.0.1:8000/'
 
 export const getBooks = category => {
     return function(dispatch){
 
-        fetch(this.url + '/api/?search=' + category)
+        fetch(url + 'api/?search=' + category)
         .then(response => response.json())
         .then(data => dispatch(filterByCategoryAction(data.results)))
 
     }
 }
 
-export const getBookDetail = seoUrl => {
-    return function(dispatch){
+// export const getBookDetail = seoUrl => {
+//     return function(dispatch){
 
-        fetch(this.url + seoUrl)
-        .then(response => response.json())
-        .then(data => dispatch(filterByCategoryAction(data.results)))
+//         fetch(url + 'api/' + seoUrl)
+//         .then(response => response.json())
+//         .then(data => dispatch(filterByCategoryAction(data)))
 
-    }
-}
+//     }
+// }
