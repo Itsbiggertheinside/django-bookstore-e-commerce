@@ -30,7 +30,8 @@ class HeaderSlider extends Component {
   render() {
     return (
         <div className="mb-4">
-            <Swiper spaceBetween={5} slidesPerView={2.3} loop={true} autoplay={{delay: 1500, disableOnInteraction: false}} >
+            <Swiper spaceBetween={5} loop={true} autoplay={{delay: 1500, disableOnInteraction: false}} 
+                    breakpoints={{ 0: {slidesPerView: 1}, 768: {slidesPerView: 2}, 1024: {slidesPerView: 2.3}}}>
                 <SwiperSlide><SliderBookCard book={book} bgColor={colors[0]} /></SwiperSlide>
                 <SwiperSlide><SliderBookCard book={book} bgColor={colors[1]} /></SwiperSlide>
                 <SwiperSlide><SliderBookCard book={book} bgColor={colors[2]} /></SwiperSlide>

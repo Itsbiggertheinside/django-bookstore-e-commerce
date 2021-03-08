@@ -10,12 +10,14 @@ class App extends Component {
   render() {
     return (
       <div>
+        <PageNavbar />
         <Router>
           <Switch>
             <Route exact path='/' component={Main} />
             <Route path='/detail/:slug' component={DetailPage} />
           </Switch>
         </Router>
+        <PageFooter />
       </div>
     )
   }

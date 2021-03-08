@@ -5,3 +5,18 @@
 .navigation-button {
     background-color: transparent;
 }
+
+a[role="tab"] {
+    color: rgb(20, 20, 20);
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+a[aria-selected='true'] {
+    color: antiquewhite !important;
+    background-color: #dc3546ef !important;
+}
+
+#comment-form-input {
+    min-height: 6.2rem;
+}

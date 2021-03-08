@@ -1,3 +1,5 @@
+// import 'jquery/dist/jquery.slim';
+// import 'popper.js/dist/popper';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'swiper/swiper.min.css';
 import './style.css';
