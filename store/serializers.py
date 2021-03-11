@@ -20,6 +20,9 @@ class BookCommentSerializer(serializers.ModelSerializer):
 class BookDetailSerializer(serializers.ModelSerializer):
 
     comments = BookCommentSerializer(read_only=True, many=True)
+    
+    skin_condition = serializers.CharField(source='get_skin_condition_display')
+    language_of_publication = serializers.CharField(source='get_language_of_publication_display')
 
     class Meta:
         model = BookDetail
@@ -28,13 +31,9 @@ class BookDetailSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
 
-    author = AuthorSerializer()
+    author = serializers.SlugRelatedField(slug_field='name', read_only=True)
     details = BookDetailSerializer(read_only=True, many=True)
-    get_absolute_url = serializers.SerializerMethodField()
     
     class Meta:
         model = Book
         fields = '__all__'
-
-    def get_get_absolute_url(self, obj):
-        return obj.get_absolute_url()

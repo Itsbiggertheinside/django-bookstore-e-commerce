@@ -3,27 +3,28 @@ import { Container, Row, Col, Card, Image, Button, Tabs, Tab, Form } from 'react
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BookCard } from '../commons/Card/BookCard';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { BookCard } from '../commons/Card/BookCard';
-// import { getBookDetail } from '../../redux/actions/filter';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBookDetail } from '../../redux/actions/detail';
 
 
 export default function DetailPage() {
     const params = useParams();
-    const [bookData, setBookData] = useState({})
-    
+    const [filter, setFilter] = useState({details: []})
+    // const book = useSelector(state => state.getBookDetailReducer)
+    // const dispatch = useDispatch()
 
     useEffect(() => {
-        getBookDetail();
+        // setFilter(dispatch(getBookDetail(params.slug)));
+        fetch('http://127.0.0.1:8000/api/' + params.slug + '/')
+        .then(response => response.json())
+        .then(data => setFilter(data))
+
+        {console.log(filter)}
     }, [])
     
-    const getBookDetail = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/${params.slug}/`)
-        const data = await response.json()
-        setBookData(data)
-    }
 
-    const book = {
+    const sliderBook = {
         id: 1,
         image: 'https://i.dr.com.tr/cache/600x600-0/originals/0000000720273-1.jpg',
         title: 'Dedemin Bakkalı',
@@ -36,23 +37,26 @@ export default function DetailPage() {
 
     return (
         <div className='my-5'>
+
+            {console.log(filter)}
+
             <Container>
                 <Row>
                     <Col xs={12} md={4}>
-                        <Image src='https://i.dr.com.tr/cache/600x600-0/originals/0000000720273-1.jpg' thumbnail />
+                        <Image src={filter.image} thumbnail />
                     </Col>
                     <Col xs={12} md={8}>
-                        <h1>Dedemin Bakkalı</h1>
-                        <h4>Şermin Yaşar</h4>
-                        <h6>Yedi Kapı Yayınevi</h6>
+                        <h1>{filter.title}</h1>
+                        <h4>{filter.author}</h4>
+                        <h6>{filter.publisher}</h6>
                         <Card bg='danger' text='light' style={{ minHeight: '12rem' }} className="my-5">
                             <Card.Header>Satın alım</Card.Header>
                             <Card.Body>
                                 <Row>
                                     <Col md={6}>
                                         <h2>40% indirim</h2>
-                                        <h4><span className='mr-2 '><s>38.00₺</s></span> <span>24.70 ₺</span></h4>
-                                        <p>1452 adet ürün şuan stoklarda</p>
+                                        <h4><span className='mr-2 '><s>{filter.price}₺</s></span> <span>{filter.discounted_price} ₺</span></h4>
+                                        <p>{filter.stock} adet ürün şuan stoklarda</p>
                                     </Col>
                                     <Col md={6}>
                                         <Button variant='light' block>Sepete Ekle</Button>
@@ -63,25 +67,29 @@ export default function DetailPage() {
                         </Card>
                         <Tabs defaultActiveKey="Description" id="book-detail-tabs" className='my-5'>
                             <Tab eventKey="Description" title="Açıklama">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p>{filter.description}</p>
                             </Tab>
                             <Tab eventKey="Detail" title="Detaylar" variant='danger'>
                                 <Row>
                                     <Col xs={12} md={4}>
                                         <h4>Özellikler</h4>
-                                        <p>Cilt Durumu	:	Ciltsiz</p>
-                                        <p>Basım Tarihi	:	Şubat 2021</p>
-                                        <p>Basım Yeri	:	Türkiye</p>
-                                        <p>Boyutlar	:	13,50 x 21,00 cm</p>
-                                        <p>Basım Dili	:	Türkçe</p>
-                                        <p>Orijinal Dil	:	Fransızca</p>
-                                        <p>Kağıt Tipi	:	2. Hamur</p>
-                                        <p>Sayfa Sayısı	:	216</p>
-                                        <p>Barkod	:	9789750848940</p>
+                                        {filter.details.map(detail => (
+                                            <div key={detail.id}>
+                                                <p>Cilt Durumu	:	{detail.get_skin_condition_display}</p>
+                                                <p>Basım Tarihi	:	{detail.date_of_publication}</p>
+                                                <p>Basım Yeri	:	{detail.place_of_publication}</p>
+                                                <p>Boyutlar	:	{detail.dimesion}</p>
+                                                <p>Basım Dili	:	Türkçe</p>
+                                                <p>Orijinal Dil	:	{detail.get_language_of_publication_display}</p>
+                                                <p>Kağıt Tipi	:	{detail.paper_type}</p>
+                                                <p>Sayfa Sayısı	:	{detail.number_of_pages}</p>
+                                                <p>Barkod	:	{detail.barcode}</p>
+                                            </div>
+                                        ))}
                                     </Col>
                                     <Col xs={12} md={4}>
                                         <h4>Kategoriler</h4>
-                                        <p>Edebiyat / Roman</p>
+                                        <p>{filter.category}</p>
                                     </Col>
                                     <Col xs={12} md={4}>
                                         <h4>Katkıda Bulunanlar</h4>
@@ -148,12 +156,12 @@ export default function DetailPage() {
                         <h2 className='my-5 justify-content-center'>İlgini Çekebilir</h2>
                         <Swiper spaceBetween={50} loop={true} autoplay={{delay: 1500, disableOnInteraction: false}}
                                 breakpoints={{ 0: {slidesPerView: 2}, 768: {slidesPerView: 2.4}, 1024: {slidesPerView: 3}}} navigation>
-                            <SwiperSlide><BookCard book={book} /></SwiperSlide>
-                            <SwiperSlide><BookCard book={book} /></SwiperSlide>
-                            <SwiperSlide><BookCard book={book} /></SwiperSlide>
-                            <SwiperSlide><BookCard book={book} /></SwiperSlide>
-                            <SwiperSlide><BookCard book={book} /></SwiperSlide>
-                            <SwiperSlide><BookCard book={book} /></SwiperSlide>
+                            <SwiperSlide><BookCard book={sliderBook} /></SwiperSlide>
+                            <SwiperSlide><BookCard book={sliderBook} /></SwiperSlide>
+                            <SwiperSlide><BookCard book={sliderBook} /></SwiperSlide>
+                            <SwiperSlide><BookCard book={sliderBook} /></SwiperSlide>
+                            <SwiperSlide><BookCard book={sliderBook} /></SwiperSlide>
+                            <SwiperSlide><BookCard book={sliderBook} /></SwiperSlide>
                         </Swiper>
                     </Col>
                 </Row>

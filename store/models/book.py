@@ -23,9 +23,6 @@ class Book(models.Model):
     def __str__(self):
         return f'{self.title} - {self.author}'
 
-    def get_absolute_url(self):
-        return reverse('book-detail', kwargs={'slug': self.slug})
-
     def create_unique_slug(self):
         url = slugify(self.title.replace('ı', 'i'))
         author = slugify(self.author.replace('ı', 'i'))

@@ -17,13 +17,3 @@ export const getBooks = category => {
 
     }
 }
-
-// export const getBookDetail = seoUrl => {
-//     return function(dispatch){
-
-//         fetch(url + 'api/' + seoUrl)
-//         .then(response => response.json())
-//         .then(data => dispatch(filterByCategoryAction(data)))
-
-//     }
-// }
