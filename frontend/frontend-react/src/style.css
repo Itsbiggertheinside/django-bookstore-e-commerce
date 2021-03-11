@@ -20,3 +20,23 @@ a[aria-selected='true'] {
 #comment-form-input {
     min-height: 6.2rem;
 }
+
+.order-card img {
+    width: 100%;
+}
+
+.order-card .my-auto {
+    padding: 1rem;
+}
+
+.cart-product-price {
+    text-align: right;
+    line-height: .5rem;
+}
+
+@media screen and (max-width: 750px) {
+    .cart-product-price {
+        text-align: left;
+        line-height: 1rem;
+    }
+}

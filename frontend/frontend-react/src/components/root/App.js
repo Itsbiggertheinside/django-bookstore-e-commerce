@@ -3,6 +3,7 @@ import Main from '../partials/Main';
 import PageNavbar from '../partials/PageNavbar';
 import PageFooter from '../partials/PageFooter';
 import DetailPage from '../detailpage/DetailPage';
+import OrderPage from '../orderpage/OrderPage';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Main} />
             <Route path='/detail/:slug' component={DetailPage} />
+            <Route path='/order' component={OrderPage} />
           </Switch>
         </Router>
         <PageFooter />
