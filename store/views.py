@@ -28,11 +28,16 @@ class OrderRetrieveAPIView(generics.RetrieveAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class OrderItemViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+class OrderItemViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = OrderItem.objects.select_related('order__customer__user', 'item__author').all()
     serializer_class = OrderItemSerializer
 
-    def perform_create(self, serializer):
-        customer = self.request.user.customer
+    def create(self, request, *args, **kwargs):
+        customer = request.user.customer
+        item_pk = request.query_params.get('item_id')
         order, created = Order.objects.get_or_create(customer=customer, is_completed=False)
-        serializer.save(order=order)
+        order_item, created = OrderItem.objects.get_or_create(order=order, pk=item_pk)
+        order_item.quantity += 1
+        order_item.save()
+        serializer = OrderItemSerializer(order_item)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
