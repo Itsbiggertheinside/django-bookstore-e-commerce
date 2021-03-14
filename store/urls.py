@@ -4,13 +4,13 @@ from .views import BookListHomeViewSet, OrderItemViewSet, OrderRetrieveAPIView
 
 
 router = DefaultRouter()
-router.register('', BookListHomeViewSet, basename='book')
-router.register('order-item', OrderItemViewSet, basename='order-item')
-
+router.register(r'book', BookListHomeViewSet)
+router.register(r'order-item', OrderItemViewSet)
 
 urlpatterns = [
     
     path('', include(router.urls)),
+    
     path('order/<anything>/', OrderRetrieveAPIView.as_view(), name='order'),
 
 ]

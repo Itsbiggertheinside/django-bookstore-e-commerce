@@ -2,27 +2,6 @@ from rest_framework import serializers
 from .models import Order, OrderItem, Author, Book, BookDetail, BookComment
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = OrderItem
-        fields = '__all__'
-        read_only_fields = ('quantity', )
-
-
-class OrderSerializer(serializers.ModelSerializer):
-
-    items = serializers.SerializerMethodField(read_only=True)
-
-    class Meta:
-        model = Order
-        fields = '__all__'
-
-    def get_items(self, obj):
-        query = obj.items.values_list('item__title', 'item__author__name', 'item__publisher', 'item__price', 'item__discounted_price', 'item__category')
-        return query
-
-
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
@@ -58,3 +37,23 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = '__all__'
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+        
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    items = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+    def get_items(self, obj):
+        query = obj.items.values_list('item__title', 'item__author__name', 'item__publisher', 'item__price', 'item__discounted_price', 'item__category')
+        return query
