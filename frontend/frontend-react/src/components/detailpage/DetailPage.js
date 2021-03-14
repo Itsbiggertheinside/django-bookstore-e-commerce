@@ -3,14 +3,14 @@ import { Container, Row, Col, Card, Image, Button, Tabs, Tab, Form } from 'react
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BookCard } from '../commons/Card/BookCard';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBookDetail } from '../../redux/actions/detail';
 
 
 export default function DetailPage() {
     const params = useParams();
-    const [filter, setFilter] = useState({details: []})
+    const [filter, setFilter] = useState({
+    })
     // const book = useSelector(state => state.getBookDetailReducer)
     // const dispatch = useDispatch()
 
@@ -20,8 +20,7 @@ export default function DetailPage() {
         .then(response => response.json())
         .then(data => setFilter(data))
 
-        {console.log(filter)}
-    }, [])
+    }, [fetch])
     
 
     const sliderBook = {
@@ -37,8 +36,6 @@ export default function DetailPage() {
 
     return (
         <div className='my-5'>
-
-            {console.log(filter)}
 
             <Container>
                 <Row>
@@ -73,19 +70,17 @@ export default function DetailPage() {
                                 <Row>
                                     <Col xs={12} md={4}>
                                         <h4>Özellikler</h4>
-                                        {filter.details.map(detail => (
-                                            <div key={detail.id}>
-                                                <p>Cilt Durumu	:	{detail.get_skin_condition_display}</p>
-                                                <p>Basım Tarihi	:	{detail.date_of_publication}</p>
-                                                <p>Basım Yeri	:	{detail.place_of_publication}</p>
-                                                <p>Boyutlar	:	{detail.dimesion}</p>
-                                                <p>Basım Dili	:	Türkçe</p>
-                                                <p>Orijinal Dil	:	{detail.get_language_of_publication_display}</p>
-                                                <p>Kağıt Tipi	:	{detail.paper_type}</p>
-                                                <p>Sayfa Sayısı	:	{detail.number_of_pages}</p>
-                                                <p>Barkod	:	{detail.barcode}</p>
-                                            </div>
-                                        ))}
+                                        <div>
+                                            <p>Cilt Durumu	:	{filter.details.skin_condition}</p>
+                                            <p>Basım Tarihi	:	{filter.details.date_of_publication}</p>
+                                            <p>Basım Yeri	:	{filter.details.place_of_publication}</p>
+                                            <p>Boyutlar	:	{filter.details.dimesion}</p>
+                                            <p>Basım Dili	:	Türkçe</p>
+                                            <p>Orijinal Dil	:	{filter.details.language_of_publication}</p>
+                                            <p>Kağıt Tipi	:	{filter.details.paper_type}</p>
+                                            <p>Sayfa Sayısı	:	{filter.details.number_of_pages}</p>
+                                            <p>Barkod	:	{filter.details.barcode}</p>
+                                        </div>
                                     </Col>
                                     <Col xs={12} md={4}>
                                         <h4>Kategoriler</h4>
@@ -107,7 +102,7 @@ export default function DetailPage() {
                                         <Col md={8} className='py-3'>
                                             <Form.Group controlId="formGroupPassword">
                                                 <Form.Label>Yorumunuz: </Form.Label>
-                                                <Form.Control type="text" as='textarea' id='comment-form-input' />
+                                                <Form.Control type="text" as='textarea' />
                                             </Form.Group>
                                         </Col>
                                         <Col md={4} className='py-3'>

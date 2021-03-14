@@ -35,7 +35,7 @@ class Book(models.Model):
 
 
 class BookDetail(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='details')
+    book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name='details')
     skin_condition = models.CharField(max_length=3, choices=BOOK_SKIN_CONDITION, default='H')
     date_of_publication = models.DateTimeField(null=True, blank=True)
     place_of_publication = models.CharField(max_length=255, null=True, blank=True)

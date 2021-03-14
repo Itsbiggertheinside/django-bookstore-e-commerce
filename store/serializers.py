@@ -1,5 +1,25 @@
 from rest_framework import serializers
-from .models import Author, Book, BookDetail, BookComment
+from .models import Order, OrderItem, Author, Book, BookDetail, BookComment
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    items = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+    def get_items(self, obj):
+        query = obj.items.values_list('item__title', 'item__author__name', 'item__publisher', 'item__price', 'item__discounted_price', 'item__category')
+        return query
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -32,7 +52,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
 
     author = serializers.SlugRelatedField(slug_field='name', read_only=True)
-    details = BookDetailSerializer(read_only=True, many=True)
+    details = BookDetailSerializer(read_only=True)
     
     class Meta:
         model = Book

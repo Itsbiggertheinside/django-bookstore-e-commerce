@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import OrderCard from '../commons/Order/OrderCard'
+import { useSelector, useDispatch } from 'react-redux'
+import { getOrderAction } from '../../redux/actions/order'
 
 
 function OrderPage() {
+
+    const state = useSelector(state => state.orderReducer)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getOrderAction('1'))
+        console.log(state.props)
+    }, [])
+
     return (
         <div className='mb-5'>
             <Container>

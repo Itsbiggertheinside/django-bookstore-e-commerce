@@ -18,7 +18,7 @@ export const BookCard = ({book}) => {
                 </a>
             </div>
             <div className="list-content">
-                <h2><Link to={'detail/' + book.slug} className='text-black'>{book.title}</Link></h2>
+                <h2><Link to={'/detail/' + book.slug} className='text-black'>{book.title}</Link></h2>
                 <h6><a href="#" className="text-black">{book.author}</a></h6> 
                 <h6><a href="#" className="text-black">{book.publisher}</a></h6> 
                 <span className="list-meta">
