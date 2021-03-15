@@ -8,7 +8,7 @@ from .pagination import BookHomePagination, BookCategoryPagination
 
 
 # Create your views here.
-class BookListHomeViewSet(viewsets.ReadOnlyModelViewSet):
+class BookReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Book.objects.select_related('author').prefetch_related('details__comments__owner__user').all()
     serializer_class = BookSerializer
     lookup_field = 'slug'
@@ -27,12 +27,13 @@ class OrderRetrieveAPIView(generics.RetrieveAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class OrderItemAPIView(mixins.CreateModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
-    queryset = OrderItem.objects.select_related('order__customer__user', 'item__author').all()
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.select_related('order', 'item').all()
     serializer_class = OrderItemSerializer
 
-    def post(self, request, book_id=None, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         customer = request.user.customer
+        book_id = request.query_params.get('book_id', None)
         book = generics.get_object_or_404(Book, id=book_id)
 
         order, created = Order.objects.get_or_create(customer=customer, is_completed=False)
@@ -43,15 +44,16 @@ class OrderItemAPIView(mixins.CreateModelMixin, mixins.UpdateModelMixin, generic
         serializer = OrderItemSerializer(order_item)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    # def put(self, request, book_id=None, *args, **kwargs):
-    #     customer = request.user.customer
-    #     book = generics.get_object_or_404(Book, id=book_id)
-    #     quantity = request.query_params.get('quantity', None)
+    def update(self, request, *args, **kwargs):
+        customer = request.user.customer
+        quantity = request.query_params.get('quantity', None)
+        book_id = request.query_params.get('book_id', None)
+        book = generics.get_object_or_404(Book, id=book_id)
 
-    #     order = generics.get_object_or_404(Order, customer=customer, is_completed=False)
-    #     order_item = generics.get_object_or_404(OrderItem, order=order, item=book)
-    #     order_item.quantity = quantity
-    #     order_item.save()
+        order, created = Order.objects.get_or_create(customer=customer, is_completed=False)
+        order_item, created = OrderItem.objects.get_or_create(order=order, item=book)
+        order_item.quantity = quantity
+        order_item.save()
 
-    #     serializer = OrderItemSerializer(order_item)
-    #     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        serializer = OrderItemSerializer(order_item)
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
