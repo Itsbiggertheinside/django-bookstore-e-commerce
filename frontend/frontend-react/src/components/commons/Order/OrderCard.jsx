@@ -5,15 +5,15 @@ function OrderCard({orderItem}) {
     return (
         <div>
             <Card border="light" className='mb-4 order-card'>
-                <Card.Header>{orderItem.item__category}</Card.Header>
+                <Card.Header>{orderItem.category}</Card.Header>
                 <Card.Body>
                     <Row noGutters='true'>
                         <Col xs="6" md="2">
-                            <Image src='https://i.dr.com.tr/cache/600x600-0/originals/0000000720273-1.jpg' rounded />
+                            <Image src={orderItem.image} rounded />
                         </Col>
                         <Col xs="12" md="4" className="my-auto">
-                            <Card.Title>{orderItem.item__title}</Card.Title>
-                            <Card.Text className='text-muted'>{orderItem.item__author__name}</Card.Text>
+                            <Card.Title>{orderItem.title}</Card.Title>
+                            <Card.Text className='text-muted'>{orderItem.author}</Card.Text>
                             <Card.Text className='small text-success'>Teslimat süresi 2 - 3 iş günü</Card.Text>
                         </Col>
                         <Col xs="8" md="3" className="my-auto">
@@ -28,8 +28,8 @@ function OrderCard({orderItem}) {
                         </Col>
                         <Col xs="12" md="3" className="my-auto cart-product-price">
                             <Card.Text className='small text-danger'>40% indirim</Card.Text>
-                            <Card.Text className='text-muted'><s>{orderItem.item__price} ₺</s></Card.Text>
-                            <Card.Title>{orderItem.item__discounted_price} ₺</Card.Title>
+                            <Card.Text className='text-muted'><s>{orderItem.price} ₺</s></Card.Text>
+                            <Card.Title>{orderItem.discounted_price} ₺</Card.Title>
                             <Card.Link href='#' className="small">Favorilere Ekle</Card.Link>
                             <Card.Link href='#' className="small">Kaldır</Card.Link>
                         </Col>

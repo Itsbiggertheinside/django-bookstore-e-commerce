@@ -4,7 +4,7 @@ from .views import BookReadOnlyViewSet, OrderItemViewSet, OrderRetrieveAPIView
 
 
 router = DefaultRouter()
-router.register(r'book', BookReadOnlyViewSet)
+router.register(r'book', BookReadOnlyViewSet, basename='book')
 router.register(r'item', OrderItemViewSet)
 
 urlpatterns = [

@@ -53,7 +53,7 @@ function OrderPage() {
                     <Col xs="12" md="8" className='mt-5'>
                         <Card bg='light'>
                             {state.items.map(item => (
-                                <div key={item.item__id}>
+                                <div key={item.id}>
                                     <OrderCard orderItem={item} />
                                 </div>
                             ))}

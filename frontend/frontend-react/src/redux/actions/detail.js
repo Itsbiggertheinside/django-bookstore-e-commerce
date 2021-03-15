@@ -14,7 +14,7 @@ const url = 'http://127.0.0.1:8000'
 export const getBookDetail = seoUrl => {
     return function(dispatch){
 
-        fetch(url + '/api/' + seoUrl + '/')
+        fetch(url + '/api/book/' + seoUrl + '/')
         .then(response => response.json())
         .then(data => dispatch(getBookDetailAction(data)))
 

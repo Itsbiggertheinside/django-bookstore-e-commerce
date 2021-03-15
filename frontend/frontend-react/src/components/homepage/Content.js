@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Container, Row, Col, Nav, Pagination, Button } from 'react-bootstrap';
 import { getBooks } from '../../redux/actions/filter';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +10,11 @@ export default function Content() {
 
     const filter = useSelector(state => state.filterByCategoryReducer)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getBooks(''))
+        console.log(filter)
+    }, [])
 
     // const book = {
     //     id: 1,
@@ -39,7 +44,7 @@ export default function Content() {
                         <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('fantastik'))}>Fantastik</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('korku-gerilim'))}>Korku Gerilim</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gerilim'))}>Korku Gerilim</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
                         <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('macera'))}>Macera</Button>
@@ -51,7 +56,7 @@ export default function Content() {
                         <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('inceleme'))}>Edebiyat İnceleme</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
-                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('gençlik'))}>Çocuk ve Gençlik</Button>
+                        <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('çocuk'))}>Çocuk ve Gençlik</Button>
                     </Nav.Item>
                     <Nav.Item className="mr-2 mt-2">
                         <Button className="navigation-button btn-outline-dark" onClick={() => dispatch(getBooks('bilim'))}>Bilim</Button>
@@ -75,7 +80,7 @@ export default function Content() {
                 <h3>Türünün Popülerleri</h3>
                 <Row>
                     {filter.map((book) => (
-                        <Col xs="6" className="mt-4">
+                        <Col xs="6" className="mt-4" key={book.id}>
                             <BookCard book={book} />
                         </Col>
                     ))}

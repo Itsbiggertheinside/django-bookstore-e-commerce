@@ -15,11 +15,11 @@ export default function DetailPage() {
 
     useEffect(() => {
         // setFilter(dispatch(getBookDetail(params.slug)));
-        fetch('http://127.0.0.1:8000/api/' + params.slug + '/')
+        fetch('http://127.0.0.1:8000/api/book/' + params.slug + '/')
         .then(response => response.json())
         .then(data => setFilter(data))
 
-    }, [setFilter])
+    }, [])
     
 
     const sliderBook = {
@@ -35,7 +35,6 @@ export default function DetailPage() {
 
     return (
         <div className='my-5'>
-
             <Container>
                 <Row>
                     <Col xs={12} md={4}>
@@ -69,17 +68,19 @@ export default function DetailPage() {
                                 <Row>
                                     <Col xs={12} md={4}>
                                         <h4>Özellikler</h4>
-                                        <div>
-                                            <p>Cilt Durumu	:	{filter.details.skin_condition}</p>
-                                            <p>Basım Tarihi	:	{filter.details.date_of_publication}</p>
-                                            <p>Basım Yeri	:	{filter.details.place_of_publication}</p>
-                                            <p>Boyutlar	:	{filter.details.dimesion}</p>
-                                            <p>Basım Dili	:	Türkçe</p>
-                                            <p>Orijinal Dil	:	{filter.details.language_of_publication}</p>
-                                            <p>Kağıt Tipi	:	{filter.details.paper_type}</p>
-                                            <p>Sayfa Sayısı	:	{filter.details.number_of_pages}</p>
-                                            <p>Barkod	:	{filter.details.barcode}</p>
-                                        </div>
+                                        {filter.details ? (
+                                            <div>
+                                                <p>Cilt Durumu	:	{filter.details.skin_condition}</p>
+                                                <p>Basım Tarihi	:	{filter.details.date_of_publication}</p>
+                                                <p>Basım Yeri	:	{filter.details.place_of_publication}</p>
+                                                <p>Boyutlar	:	{filter.details.dimesion}</p>
+                                                <p>Basım Dili	:	Türkçe</p>
+                                                <p>Orijinal Dil	:	{filter.details.language_of_publication}</p>
+                                                <p>Kağıt Tipi	:	{filter.details.paper_type}</p>
+                                                <p>Sayfa Sayısı	:	{filter.details.number_of_pages}</p>
+                                                <p>Barkod	:	{filter.details.barcode}</p>
+                                            </div>
+                                        ) : (<p></p>)}
                                     </Col>
                                     <Col xs={12} md={4}>
                                         <h4>Kategoriler</h4>
@@ -127,7 +128,7 @@ export default function DetailPage() {
                                 <Card.Title>İade işlemlerinizi aşağıdaki şekilde yapmalısınız:</Card.Title>
                                 <Card.Text>
                                     Ürünün adresinize teslim tarihinden itibaren 14 gün içinde "Sipariş Takibi" sayfasından "İade ve Geri gönderim" başvurusunda bulunarak iade sürecinizi başlatabilirsiniz.
-                                    Ürünü iade etmek için, orijinal kutusuyla ve faturasıyla birlikte Hepsiburada.com’a göndermelisiniz. İadenizin kabul edilmesi için, ürünün hasar görmemiş ve kullanılmamış olması gerekmektedir.
+                                    Ürünü iade etmek için, orijinal kutusuyla ve faturasıyla birlikte KitapSepeti.com’a göndermelisiniz. İadenizin kabul edilmesi için, ürünün hasar görmemiş ve kullanılmamış olması gerekmektedir.
                                     Daha detaylı bilgi için Çözüm Merkezi sayfasını ziyaret edebilirsiniz.
                                     <br></br>
                                     <br></br>
@@ -138,7 +139,7 @@ export default function DetailPage() {
                                     Alışveriş kredisi ile satın alınan ürün iadelerinde; standart prosedür geçerlidir.
                                     <br></br>
                                     <br></br>
-                                    Ürün iptal/iadeniz gerçekleştiği durumda, ürün tutarınız Hepsiburada tarafından tanımladığınız hesabınıza geri ödenir.
+                                    Ürün iptal/iadeniz gerçekleştiği durumda, ürün tutarınız KitapSepeti tarafından tanımladığınız hesabınıza geri ödenir.
                                     <br></br>
                                     <br></br>
                                     Kredili siparişiniz iptal/iade alındığında krediniz kapanmış sayılmamaktadır. Ürün iptal/iadesinden sonra ayrıca krediden cayma talebiniz olur ise banka ile bireysel olarak iletişime geçmeniz gerekmektedir. Sipariş tarihinizden kredi kapama tarihinize kadar oluşan faizden sorumlu olacaksınız.

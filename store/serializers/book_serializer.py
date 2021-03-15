@@ -32,6 +32,15 @@ class BookDetailSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
 
     author = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+
+class BookWithDetailsRetrievePageSerializer(serializers.ModelSerializer):
+    
+    author = serializers.SlugRelatedField(slug_field='name', read_only=True)
     details = BookDetailSerializer(read_only=True)
     
     class Meta:

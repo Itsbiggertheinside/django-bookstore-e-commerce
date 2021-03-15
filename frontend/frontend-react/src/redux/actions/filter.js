@@ -11,7 +11,7 @@ const url = 'http://127.0.0.1:8000/'
 export const getBooks = category => {
     return function(dispatch){
 
-        fetch(url + 'api/?search=' + category)
+        fetch(url + 'api/book/?search=' + category)
         .then(response => response.json())
         .then(data => dispatch(filterByCategoryAction(data.results)))
 
