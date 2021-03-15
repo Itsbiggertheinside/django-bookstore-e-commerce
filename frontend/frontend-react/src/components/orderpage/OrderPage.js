@@ -1,20 +1,50 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import OrderCard from '../commons/Order/OrderCard'
-import { useSelector, useDispatch } from 'react-redux'
-import { getOrderAction } from '../../redux/actions/order'
 
 
 function OrderPage() {
 
-    const state = useSelector(state => state.orderReducer)
-    const dispatch = useDispatch()
+    const [state, setState] = useState({items: []})
 
     useEffect(() => {
-        dispatch(getOrderAction('1'))
-        console.log(state.props)
+        getOrder()
     }, [])
+
+    const getOrder = () => {
+
+        // const loginOptions = {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json, text/plain',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         email: 'fakinmayk@gmail.com',
+        //         password: '6DsPG55gK!'
+        //     })
+        // }
+
+        // fetch('http://127.0.0.1:8000/rest-auth/login/', loginOptions)
+        // .then(response => response.json())
+        // .then(data => {
+        //     const token = data.key
+        //     console.log(token)
+        //     sessionStorage.setItem('token', token)
+        // })
+
+        fetch('http://127.0.0.1:8000/api/order/', {
+            method: 'get',
+            headers: {
+                'Authorization': `Token ${sessionStorage.getItem('token')}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {setState(data)})
+    }
 
     return (
         <div className='mb-5'>
@@ -22,9 +52,11 @@ function OrderPage() {
                 <Row>
                     <Col xs="12" md="8" className='mt-5'>
                         <Card bg='light'>
-                            <OrderCard />
-                            <OrderCard />
-                            <OrderCard />
+                            {state.items.map(item => (
+                                <div key={item.item__id}>
+                                    <OrderCard orderItem={item} />
+                                </div>
+                            ))}
                         </Card>
                     </Col>
                     <Col xs="12" md="4" className='mt-5'>

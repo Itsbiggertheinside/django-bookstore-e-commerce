@@ -9,8 +9,7 @@ import { getBookDetail } from '../../redux/actions/detail';
 
 export default function DetailPage() {
     const params = useParams();
-    const [filter, setFilter] = useState({
-    })
+    const [filter, setFilter] = useState({})
     // const book = useSelector(state => state.getBookDetailReducer)
     // const dispatch = useDispatch()
 
@@ -20,7 +19,7 @@ export default function DetailPage() {
         .then(response => response.json())
         .then(data => setFilter(data))
 
-    }, [fetch])
+    }, [setFilter])
     
 
     const sliderBook = {

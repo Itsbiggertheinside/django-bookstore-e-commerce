@@ -55,5 +55,6 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_items(self, obj):
-        query = obj.items.values_list('item__title', 'item__author__name', 'item__publisher', 'item__price', 'item__discounted_price', 'item__category', 'quantity')
+        query = obj.items.values('item__id', 'item__title', 'item__author__name', 'item__publisher',
+         'item__price', 'item__discounted_price', 'item__category', 'quantity')
         return query
