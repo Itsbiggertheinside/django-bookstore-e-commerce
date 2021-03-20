@@ -23,12 +23,12 @@ class PageNavbar extends Component {
                                 </Router>
                             </NavDropdown>
                             <Form inline>
-                                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                <Button variant="outline-success">Search</Button>
+                                <FormControl type="text" placeholder="Arama yap" className="mr-sm-2" />
+                                <Button variant="outline-dark">Ara</Button>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
-                    <Navbar.Brand href="#home" className="">read<b>books</b></Navbar.Brand>
+                    <Navbar.Brand href="#home" className="">kitap<b>Kurdu</b></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <NavLink>
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 24 24" stroke="#bd5bff">
