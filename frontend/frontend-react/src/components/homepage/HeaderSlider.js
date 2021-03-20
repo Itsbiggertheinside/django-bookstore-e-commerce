@@ -20,7 +20,8 @@ const book = {
     publisher: 'Kırmızı Kedi Yayınevi',
     category: 'Roman',
     price: 239.99,
-    stock: 4
+    stock: 4,
+    slug: 'dedemin-bakkali-sermin-yasar'
 }
 
 

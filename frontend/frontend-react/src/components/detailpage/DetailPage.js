@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, Card, Image, Button, Tabs, Tab, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image, Button, Tabs, Tab, Form, Toast } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BookCard } from '../commons/Card/BookCard';
@@ -20,6 +20,33 @@ export default function DetailPage() {
         .then(data => setFilter(data))
 
     }, [])
+
+    const createOrderItem = (bookId, bookTitle) => {
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Authorization': `Token ${sessionStorage.getItem('token')}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            }
+        }
+
+        fetch(`http://127.0.0.1:8000/api/item/?book_id=${bookId}`, requestOptions)
+        .then(response => {if(response.ok) {
+            return (
+                <Toast>
+                    <Toast.Header>
+                        <img className="rounded mr-2" alt="" />
+                        <strong className="mr-auto">${bookTitle}</strong>
+                        <small>Şimdi</small>
+                    </Toast.Header>
+                    <Toast.Body>Ürün sepetinize eklendi!</Toast.Body>
+                </Toast>
+            )
+        }})
+
+    }
     
 
     const sliderBook = {
@@ -54,7 +81,7 @@ export default function DetailPage() {
                                         <p>{filter.stock} adet ürün şuan stoklarda</p>
                                     </Col>
                                     <Col md={6}>
-                                        <Button variant='light' block>Sepete Ekle</Button>
+                                        <Button variant='light' onClick={() => createOrderItem(filter.id, filter.title)} block>Sepete Ekle</Button>
                                         <Button variant='light' block>Takip Listeme Ekle</Button>
                                     </Col>
                                 </Row>

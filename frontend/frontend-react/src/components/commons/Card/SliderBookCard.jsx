@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './SliderBookCardStyle.css';
 
 
@@ -16,7 +17,7 @@ export const SliderBookCard = ({book, bgColor}) => {
                             <p className="card-text">{book.author}</p>
                             <p className="card-text">{book.publisher}</p>
                             <p className="card-text">{book.category}</p>
-                            <button className="btn rounded-pill w-75 btn-light">Kitabı İncele</button>
+                            <Link to={'/detail/' + book.slug} className="btn rounded-pill w-75 btn-light">Kitabı İncele</Link>
                         </div>
                     </div>
                 </div>
