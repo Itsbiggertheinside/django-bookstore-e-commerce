@@ -64,10 +64,10 @@ function OrderPage() {
                             <Card.Body>
                                 <Card.Title className=''><h2>Sipariş Özeti</h2></Card.Title>
                                 <Card.Title className='mt-5'>Adres bilgileriniz</Card.Title>
-                                <Card.Text className='text-muted'>Muharrem Candaş sk. No: 54. Daire: 2. Bostanlı / Karşıyaka</Card.Text>
+                                <Card.Text className='text-muted'>Ali Karataş sk. No: 24. Daire: 5. Alsancak / İzmir</Card.Text>
                                 <Link to='/'>Bu sipariş için adres bilgilerini değiştir</Link>
 
-                                <Card.Title className='mt-5'>Sepet Toplamı: </Card.Title>
+                                <Card.Title className='mt-5'>Sepet Toplamı: 52.0 ₺</Card.Title>
                                 <Form.Group>
                                     <Form.Label>İndirim kuponu:</Form.Label>
                                     <Form.Control type='text' />
