@@ -1,3 +1,9 @@
+GENDER_CHOICE = [
+    ('M', 'Male'),
+    ('F', 'Female'),
+    ('U', 'Unknown'),
+]
+
 BOOK_SKIN_CONDITION = [
     ('H', 'Ciltli'), #Hardcover
     ('U', 'Ciltsiz'), #Unbound

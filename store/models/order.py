@@ -1,7 +1,7 @@
 from django.db import models
+
 from .customer import Customer
 from .book import Book
-
 
 
 class Order(models.Model):

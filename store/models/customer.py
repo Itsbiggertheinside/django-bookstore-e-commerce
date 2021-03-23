@@ -1,12 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .utils import GENDER_CHOICE
 
-
-GENDER_CHOICE = [
-    ('M', 'Male'),
-    ('F', 'Female'),
-    ('U', 'Unknown'),
-]
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

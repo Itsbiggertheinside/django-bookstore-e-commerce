@@ -24,6 +24,23 @@ function OrderCard({orderItem}) {
 
     }
 
+    const destroyOrderItem = bookId => {
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${sessionStorage.getItem('token')}`,
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json'
+            }
+        }
+
+        fetch(`http://127.0.0.1:8000/api/item/${bookId}/`, requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+
+    }
+
     return (
         <div>
             <Card border="light" className='mb-4 order-card'>
@@ -49,11 +66,11 @@ function OrderCard({orderItem}) {
                             </InputGroup>
                         </Col>
                         <Col xs="12" md="3" className="my-auto cart-product-price">
-                            <Card.Text className='small text-danger'>40% indirim</Card.Text>
+                            <Card.Text className='small text-danger'>{orderItem.discount_percent}% indirim</Card.Text>
                             <Card.Text className='text-muted'><s>{orderItem.price} ₺</s></Card.Text>
-                            <Card.Title>{orderItem.discounted_price} ₺</Card.Title>
+                            <Card.Title>{orderItem.item_total} ₺</Card.Title>
                             <Card.Link href='#' className="small">Favorilere Ekle</Card.Link>
-                            <Card.Link href='#' className="small">Kaldır</Card.Link>
+                            <Card.Link href='#' className="small" onClick={() => destroyOrderItem(orderItem.item)}>Kaldır</Card.Link>
                         </Col>
                     </Row>
                 </Card.Body>

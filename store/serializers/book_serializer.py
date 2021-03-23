@@ -42,7 +42,13 @@ class BookWithDetailsRetrievePageSerializer(serializers.ModelSerializer):
     
     author = serializers.SlugRelatedField(slug_field='name', read_only=True)
     details = BookDetailSerializer(read_only=True)
+    discount_percent = serializers.SerializerMethodField(read_only=True)
     
     class Meta:
         model = Book
         fields = '__all__'
+
+    def get_discount_percent(self, instance):
+        difference = instance.price - instance.discounted_price
+        discount_percent = ( difference * 100 ) // instance.price
+        return discount_percent

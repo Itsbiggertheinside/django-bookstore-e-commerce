@@ -1,20 +1,19 @@
-import axios from 'axios';
+import { BASE_URL, GET_BOOK_DETAIL } from './types';
+
 
 
 export const getBookDetailAction = data => {
     return {
-        type: 'GET_BOOK_DETAIL',
+        type: GET_BOOK_DETAIL,
         payload: data
     }
 }
 
 
-const url = 'http://127.0.0.1:8000'
-
 export const getBookDetail = seoUrl => {
     return function(dispatch){
 
-        fetch(url + '/api/book/' + seoUrl + '/')
+        fetch(BASE_URL + '/api/book/' + seoUrl + '/')
         .then(response => response.json())
         .then(data => dispatch(getBookDetailAction(data)))
 

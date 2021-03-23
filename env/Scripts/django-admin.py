@@ -1,4 +1,4 @@
-#!C:\Users\udemy\Desktop\Github Repositories\django-react-bookstore\env\Scripts\python.exe
+#!c:\users\sdeni\onedrive\belgeler\github repositories\django-react-bookstore\env\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

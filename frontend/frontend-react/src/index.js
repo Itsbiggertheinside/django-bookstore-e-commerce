@@ -1,11 +1,9 @@
-// import 'jquery/dist/jquery.slim';
-// import 'popper.js/dist/popper';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'swiper/swiper.min.css';
 import './style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/root/App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
